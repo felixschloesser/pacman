@@ -3,7 +3,9 @@
 supports macOS and linux,
 
 *gcc -o pacman pacman.c -lncurses*
-*./pacman* to execute
+
+**To execute:**
+*./pacman* 
 
 ##Libarys used:
 ncurses (new curses) - From Wikpedia
