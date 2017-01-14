@@ -1,4 +1,9 @@
 # pacman
+## How to compile
+supports macOS and linux,
+
+*gcc -o pacman pacman.c -lncurses*
+*./pacman* to execute
 
 ##Libarys used:
 ncurses (new curses) - From Wikpedia
