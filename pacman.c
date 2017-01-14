@@ -19,13 +19,13 @@ READ ONLINE: http://site.ebrary.com/lib/alltitles/docDetail.action?docID=1027860
 
 #define MAXMAZE 1000
 
-const char c_wall	= '#';
+const char c_wall		= '#';
 const char c_space	= ' ';
 const char c_player	= '@';
 const char c_ghost	= '%';
 const char c_cookie	= '.';
 
-struct figure { // Player and Ghosts
+struct figure {		// Player / ghosts with coodrinates (Y, X), and direction
 	int y;
 	int x;
 	char nowDirection;
@@ -72,7 +72,8 @@ void drawMaze(void) {
 	werase(win);
 	for(y = 0; y < sizey; y++) {
 		for(x = 0; x < sizex; x++) {
-			//Coloring the ghost
+
+			//Coloring the ghosts
 			if ( (x == ghost.x) && (y == ghost.y) ) {
 				wattron(win,COLOR_PAIR(4));
 				wprintw(win,"%c", c_ghost);
@@ -83,6 +84,7 @@ void drawMaze(void) {
 				wprintw(win,"%c", c_ghost);
 				wattroff(win,COLOR_PAIR(5));
 			}
+
 			//Coloring the player
 			else if ( (x == player.x) && (y == player.y) ) {
 				wattron(win,COLOR_PAIR(2));
@@ -287,39 +289,42 @@ int main(void) {
 		}
 		if ((ticks % 16) == 0) {		// evey tenth loop redraws the maze
 			setDirectionRandom(&ghost);
-                        moveFigure(&ghost);
+      moveFigure(&ghost);
+
 			setDirectionRandom(&blinky);
-                        moveFigure(&blinky);
-	    		moveFigure(&player);
+      moveFigure(&blinky);
+
+			moveFigure(&player);
 			eatCookie(&player);
 			setNewDirection(&player);
+
 			printPoints();
 			drawMaze();
-	    	}
-		if ((ticks % 100) == 0) {		// evey tenth loop redraws the maze
+	  }
+		if ((ticks % 100) == 0) {
 			points = points - 5;
 			printPoints();
 		}
 		gameState = checkIfGameOver(input);
 		usleep(10000);
-	   	ticks++;
+	  ticks++;
 	} while (!gameState);
+
 	if (gameState == 1) {
-		mvprintw(2,2,"CONGRATS - YOU WON!");
-        }
+		mvprintw(5,29,"CONGRATS - YOU WON!");
+  }
 	else if (gameState == 6) {
-		mvprintw(2,2,"YOU LOST ALL  POINTS");
-        }
+		mvprintw(5,29,"YOU LOST ALL  POINTS");
+  }
 	else if (gameState == 7) {
-		mvprintw(2,2,"YOU LOST - GAME OVER");
+		mvprintw(5,29,"YOU LOST - GAME OVER");
 	}
 	else if (gameState == 10) {
-		mvprintw(2,2,"QUIT: GAME TERMINATED");
-        }
+		mvprintw(5,29,"QUIT: GAME TERMINATED");
+  }
 	refresh();
-	sleep(1);
+	sleep(2);
 	delwin(win);
-	sleep(1);
 	endwin();
 	return 0;
 }
