@@ -164,32 +164,34 @@ void addValue(char *arr, int *len, char value) {
 void rmValue(char *arr, int *len, char value){
 	int i = 0;
 	int pos = -1;
-	if (*len > 0) {
-		for(i = 0; i < *len; i++) {
-	  	if (arr[i] == value) {
-				pos = i;
-			}
+	if (*len > 0)
+	{
+		for(i = 0; i < *len; i++)
+		{
+	  		if (arr[i] == value)
+			{pos = i;}
 		}
 	}
-  if (pos > -1) {
- 		if(pos+1 == *len) {
-			*len--;
+    if (pos > -1)
+    {
+ 		if(pos+1==*len){
+			--*len;
 			return;
 		}
 		for(i = pos; i < *len-1; i++)
 		arr[i] = arr[i+1];
-		*len--;
+		--*len;
 	}
 }
 
 char sourceDirection(char d) {
-  switch(d) {
+   	switch(d) {
 		case ' ': return ' '; break; // No direction
 		case 'N': return 'S'; break;
 		case 'E': return 'W'; break;
 		case 'S': return 'N'; break;
 		case 'W': return 'E'; break;
-	 	//	default: wprintw(win,"Invalid [%c]",d); break;
+	 //	default: wprintw(win,"Invalid [%c]",d); break;
 	}
 	return ' ';
 }
@@ -197,37 +199,32 @@ char sourceDirection(char d) {
 void blinkyAI(struct figure *figure) {
 	char branches[4];
 	int numOfBranches = 0;
-  int d = 0;
-  struct figure f1,f2;
+    int d = 0;
+    struct figure f1,f2;
 
-  for(d = 0; d < 4; d++)
-		if (getTileInDirection("NESW"[d], figure) != c_wall) {
-			addValue(branches,&numOfBranches,"NESW"[d]);
-		}
-		if ((figure->direction != ' ') && (numOfBranches > 1)) {
-			rmValue(branches,&numOfBranches,sourceDirection(figure->direction));
-		}
-		switch (numOfBranches) {
-	 		case 1:	figure->direction = branches[0];
-							break;
+  	for(d = 0; d < 4; d++)
+	if (getTileInDirection("NESW"[d], figure) != c_wall)
+	 	{addValue(branches,&numOfBranches,"NESW"[d]);}
+	if ((figure->direction != ' ') && (numOfBranches > 1))
+	{rmValue(branches,&numOfBranches,sourceDirection(figure->direction));}
 
-			case 2:	f1 = *figure; f1.direction = branches[0];
-							moveFigure(&f1);
-
-							f2 = *figure; f2.direction = branches[1];
-							moveFigure(&f2);
-
-							if (sqrt( pow(f1.x - player.x, 2) + pow(f1.y - player.y, 2)) >
-	 	    					sqrt( pow(f2.x - player.x, 2) + pow(f2.y - player.y, 2))) {
-									figure->direction =   branches[1];
-							}
-	 						else {
-								figure->direction =   branches[0];
-							}
-	 						break;
-
-			case 4:	break;	// open space, keep direction
-
+	 switch (numOfBranches) {
+	 	case 1:
+	 			figure->direction = branches[0];
+				break;
+		case 2:
+		   f1 = *figure; f1.direction = branches[0];
+		   moveFigure(&f1);
+		   f2 = *figure; f2.direction = branches[1];
+		   moveFigure(&f2);
+	 	  if (sqrt( pow(f1.x - player.x, 2) + pow(f1.y - player.y, 2)) >
+	 	     sqrt( pow(f2.x - player.x, 2) + pow(f2.y - player.y, 2)))
+	 	  {figure->direction =   branches[1];}
+	 	  else
+	 	  {figure->direction =   branches[0];}
+	 	  break;
+		case 4:  // open space, keep direction
+		break;
 	}
 }
 
