@@ -3,12 +3,10 @@
 supports macOS and linux,
 
 * **on Mac:**
-
-    gcc -o pacman pacman.c -lncurses
+  gcc -o pacman pacman.c -lncurses
 
 * **on Linux:**
-
-    gcc -o pacman pacman.c -lncurses
+  gcc -o pacman pacman.c -lncurses
 
 **To execute:**
 *./pacman* 
