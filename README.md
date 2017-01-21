@@ -2,7 +2,11 @@
 ## How to compile
 supports macOS and linux,
 
-*gcc -o pacman pacman.c -lncurses*
+* *on Mac:*
+  gcc -o pacman pacman.c -lncurses*
+
+* *on Linux:*
+  gcc -o pacman pacman.c -lncurses*
 
 **To execute:**
 *./pacman* 
