@@ -69,12 +69,12 @@ void load_maze() {
 	sizex = 23;
 
 	strcpy(maze,"#######################"); sizey++;
-  strcat(maze,"#..........#..........#");	sizey++;
-  strcat(maze,"#.###.####.#.####.###.#");	sizey++;
-  strcat(maze,"#o# #.#  #.#.#  #.# #o#");	sizey++;
-  strcat(maze,"#.###.####.#.####.###.#");	sizey++;
-  strcat(maze,"#.....................#");	sizey++;
-  strcat(maze,"#.###.#.#######.#.###.#");	sizey++;
+	strcat(maze,"#..........#..........#");	sizey++;
+	strcat(maze,"#.###.####.#.####.###.#");	sizey++;
+	strcat(maze,"#o# #.#  #.#.#  #.# #o#");	sizey++;
+	strcat(maze,"#.###.####.#.####.###.#");	sizey++;
+	strcat(maze,"#.....................#");	sizey++;
+	strcat(maze,"#.###.#.#######.#.###.#");	sizey++;
 	strcat(maze,"#.....#....#....#.....#");	sizey++;
 	strcat(maze,"#####.#.##.#.##.#.#####");	sizey++;
 	strcat(maze,"    #.#         #.#    ");	sizey++;
