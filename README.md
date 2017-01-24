@@ -1,4 +1,5 @@
-# pacman
+# pacman 
+for console
 ## How to compile
 supports macOS and linux,
 
