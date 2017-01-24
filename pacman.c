@@ -357,11 +357,12 @@ void printScore (void) {
 	refresh();
 }
 
-void savePoints(){    // saves Count of Cookies each time and save them in text file
+void savePoints(char playerName[]){    // saves Count of Cookies each time and save them in text file
 
     FILE* data = fopen("Scores.txt","a");
 
     fprintf(data,"%d\t",cookies);
+
 
     fclose(data);
 }
@@ -506,7 +507,7 @@ int runGame(char playerName[]) {
 	  ticks++;
 	} while (!gameState);
 
-	savePoints();
+	savePoints(playerName);
 	timeout(-1); // resets the timeout of the getch();
 
 	if (gameState == 1) {
@@ -620,12 +621,11 @@ int main(void) {
 				    //read file into array
 				    int* numberArray = (int*)malloc(10*sizeof(int));
 
-				    int i = 1;
+				    int i = 0;
 				    do{
 				        bkgd(COLOR_PAIR(1));
 				        fscanf(data, "%d", &numberArray[i]);
-				        bkgd(COLOR_PAIR(1));
-								mvwprintw(highscoreWin, 1, 0,"\n   %d. try: %d", i, numberArray[i]);
+								mvwprintw(highscoreWin, i+1, 0,"   %d. Try: \t%d Cookies",i+1, 195-numberArray[i]);
 				        //printw("\n%d.  try: %d",i+1, numberArray[i]);
 				        i++;
 				    }while(numberArray[i]!='\0');
