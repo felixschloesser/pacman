@@ -1,4 +1,5 @@
 # Pacman *- for console*
+This is a remake of the 1980' arcade-classic Pacman in the UNIX-Console. At this point it still lacks authentic ghost-behavoir in case of eating a cake.
 ## How to compile
 supports macOS and linux,
 
